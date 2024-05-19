@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ghar_subidha/core/theme/theme_config.dart';
+import 'package:intl/intl.dart';
 import 'dimens.dart';
 import 'dart:ui' as ui;
 
@@ -146,6 +147,7 @@ class Utils {
       ),
     );
   }
+
   Future<dynamic> showBottomSheet(BuildContext context, Widget child) {
     return showModalBottomSheet(
       context: context,
@@ -154,15 +156,61 @@ class Utils {
       barrierColor: AppColors.filterBack,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(radiusX50 * Utils.getScalingFactor(context)),
+          topLeft: Radius.circular(radiusX10 * Utils.getScalingFactor(context)),
           topRight:
-              Radius.circular(radiusX50 * Utils.getScalingFactor(context)),
+              Radius.circular(radiusX10 * Utils.getScalingFactor(context)),
         ),
       ),
       builder: (context) {
         return child;
       },
     );
+  }
+
+  static String? validate(String? value, {field}) {
+    value ??= "";
+    if (value.isEmpty) {
+      if (field == "email") {
+        return 'Please enter your email address.';
+      } else if (field == "password") {
+        return 'Please enter you password.';
+      } else if (field == "location") {
+        return 'Please enter location';
+      } else if (field == "current_password") {
+        return 'Please enter your current password.';
+      } else if (field == "new_password") {
+        return 'Please enter your new password';
+      } else if (field == "confirm_password") {
+        return 'Please enter confirm password';
+      } else if (field == "gender") {
+        return 'Please select your gender';
+      } else if (field == "dob") {
+        return 'Please enter Date of Birth.';
+      } else if (field == "reason_details") {
+        return "Please enter reason details";
+      }
+    } else {
+      if (field == "password") {
+        if (value.length < 6) {
+          return "Password must be at least 6 characters";
+        }
+      }
+    }
+    return null;
+  }
+
+  List<DateTime> startAndEndDate(String dateRange) {
+    DateTime startDate;
+    DateTime endDate;
+    if (dateRange == "") {
+      startDate = DateTime.now();
+      endDate = startDate.add(const Duration(days: 1));
+    } else {
+      List<String> dateStrings = dateRange.split(" - ");
+      startDate = DateFormat("dd/MM/yyyy").parse(dateStrings[0]);
+      endDate = DateFormat("dd/MM/yyyy").parse(dateStrings[1]);
+    }
+    return [startDate, endDate];
   }
 }
 

@@ -29,14 +29,15 @@ class CustomTextFormField extends StatelessWidget {
     this.autovalidateMode,
     this.onFieldSubmitted,
     required this.isLightTheme,
-    this.readOnly,
+    this.readOnly, this.height, this.extendTextField,
   });
 
   final Alignment? alignment;
 
   final double? width;
-
-  final TextEditingController? controller;
+  final double? height;
+  final bool? extendTextField;
+   final TextEditingController? controller;
 
   final FocusNode? focusNode;
 
@@ -88,9 +89,10 @@ class CustomTextFormField extends StatelessWidget {
 
   Widget get textFormFieldWidget => SizedBox(
         width: width ?? double.maxFinite,
+        height: height,
         child: TextFormField(
-          
-          cursorColor: Colors.black,
+            cursorColor: Colors.black,
+            expands: extendTextField?? false,
             controller: controller,
             focusNode: focusNode ?? FocusNode(),
             autofocus: autofocus!,

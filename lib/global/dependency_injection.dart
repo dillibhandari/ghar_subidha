@@ -2,6 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:ghar_subidha/core/database/database_helper.dart';
 import 'package:ghar_subidha/feature/auth/presentation/bloc/sign_in_bloc/signin_bloc.dart';
 import 'package:ghar_subidha/feature/auth/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
+import 'package:ghar_subidha/feature/booking/presentation/bloc/add_dates_cubit/add_dates_cubit.dart';
+import 'package:ghar_subidha/feature/booking/presentation/bloc/booking_cubbit/booking_cubit.dart';
 import 'package:ghar_subidha/feature/dashboard/presentation/bloc/permission_bloc/permission_bloc.dart';
 import 'package:ghar_subidha/feature/splash/presentation/splash_bloc/splash_bloc.dart';
 import '../core/helper/preferences/preferences.dart';
@@ -17,9 +19,11 @@ Future<void> initialize() async {
   // blocs
   sl.registerFactory(() => WalkthroughCubit(sl()));
   sl.registerFactory(() => SplashBloc(sl()));
-sl.registerFactory(() => SigninBloc());
+  sl.registerFactory(() => SigninBloc());
   sl.registerFactory(() => SignUpBloc());
-  sl.registerFactory(()=>PermissionBloc());
+  sl.registerFactory(() => PermissionBloc());
+  sl.registerFactory(() => AddDatesCubit());
+  sl.registerFactory(()=>BookingCubit());
 
   // usecase
 

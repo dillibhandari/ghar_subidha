@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ghar_subidha/core/common_widgets/custom_button.dart';
 import 'package:ghar_subidha/core/common_widgets/custom_image_view.dart';
 import 'package:ghar_subidha/core/common_widgets/custom_text_field.dart';
+import 'package:ghar_subidha/core/common_widgets/top_snack_bar.dart';
 import 'package:ghar_subidha/core/constants/image_constants.dart';
 import 'package:ghar_subidha/core/navigation/navigation.dart';
 import 'package:ghar_subidha/core/theme/theme_config.dart';
@@ -28,8 +29,23 @@ class LoginPageView extends StatelessWidget {
   }
 }
 
-class LoginBodyView extends StatelessWidget {
+class LoginBodyView extends StatefulWidget {
   const LoginBodyView({super.key});
+
+  @override
+  State<LoginBodyView> createState() => _LoginBodyViewState();
+}
+
+class _LoginBodyViewState extends State<LoginBodyView> {
+  final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
+
+  final TextEditingController _loginEmailTextEditingController =
+      TextEditingController();
+
+  final TextEditingController _loginPasswordTextEditingController =
+      TextEditingController();
+  static String emailAddress = "tanka@gmail.com";
+  static String passwords = "tanka123";
 
   @override
   Widget build(BuildContext context) {
@@ -66,17 +82,38 @@ class LoginBodyView extends StatelessWidget {
       children: [
         const Spacer(),
         Expanded(
-            flex: 2,
-            child: Text(
-              "Forgot Password ? ",
-              style: GharSubidhaTheme.getTextTheme(context)
-                  .bodyTextMedium
-                  ?.copyWith(color: AppColors.blueColor),
-            )),
+          flex: 2,
+          child: Text(
+            "Forgot Password ? ",
+            style: GharSubidhaTheme.getTextTheme(context)
+                .bodyTextMedium
+                ?.copyWith(color: AppColors.blueColor),
+          ),
+        ),
         Expanded(
           child: CustomButton(
-            onPressed: () =>
-                Navigation.replace(context, const DashboardPageView()),
+            onPressed: () {
+              if (_loginFormKey.currentState!.validate()) {
+                String email = _loginEmailTextEditingController.text;
+                String password = _loginPasswordTextEditingController.text;
+                if (email == emailAddress && password == passwords) {
+                  showTopSnackBar(
+                    Overlay.of(context),
+                    const CustomSnackBar.success(
+                      message: "User Logged in sussessfully !!!",
+                    ),
+                  );
+                  Navigation.replace(context, const DashboardPageView());
+                } else {
+                  showTopSnackBar(
+                    Overlay.of(context),
+                    const CustomSnackBar.error(
+                      message: "User credentials are not valid",
+                    ),
+                  );
+                }
+              }
+            },
             text: "Login",
             buttonStyle: CustomButtonStyles.fillBlueGray.copyWith(
               backgroundColor:
@@ -93,25 +130,32 @@ class LoginBodyView extends StatelessWidget {
   }
 
   Widget formWidget(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: sizeX30 * Utils.getScalingFactor(context)),
-        const CustomTextFormField(
-            hintText: "Email ",
-            textInputType: TextInputType.text,
-            autofocus: false,
-            textInputAction: TextInputAction.done,
-            isLightTheme: true),
-        SizedBox(height: sizeX30 * Utils.getScalingFactor(context)),
-        const CustomTextFormField(
-            hintText: "Password",
-            textInputType: TextInputType.text,
-            obscureText: true,
-            autofocus: false,
-            textInputAction: TextInputAction.done,
-            isLightTheme: true),
-        SizedBox(height: sizeX30 * Utils.getScalingFactor(context)),
-      ],
+    return Form(
+      key: _loginFormKey,
+      child: Column(
+        children: [
+          SizedBox(height: sizeX30 * Utils.getScalingFactor(context)),
+          CustomTextFormField(
+              hintText: "Email ",
+              textInputType: TextInputType.emailAddress,
+              autofocus: false,
+              textInputAction: TextInputAction.done,
+              controller: _loginEmailTextEditingController,
+              validator: (value) => Utils.validate(value, field: "email"),
+              isLightTheme: true),
+          SizedBox(height: sizeX30 * Utils.getScalingFactor(context)),
+          CustomTextFormField(
+              hintText: "Password",
+              textInputType: TextInputType.text,
+              // obscureText: true,
+              autofocus: false,
+              textInputAction: TextInputAction.done,
+              controller: _loginPasswordTextEditingController,
+              validator: (value) => Utils.validate(value, field: "password"),
+              isLightTheme: true),
+          SizedBox(height: sizeX30 * Utils.getScalingFactor(context)),
+        ],
+      ),
     );
   }
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ghar_subidha/feature/auth/presentation/view/login_page_view.dart';
- import '../../oboarding/presentation/view/walk_through.dart';
+import '../../oboarding/presentation/view/walk_through.dart';
 import 'package:ghar_subidha/feature/splash/presentation/splash_bloc/splash_bloc.dart';
- 
+
 class SplashPageView extends StatefulWidget {
   const SplashPageView({super.key});
 

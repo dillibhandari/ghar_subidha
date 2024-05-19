@@ -25,6 +25,14 @@ class _Png {
   final plumber = "resources/facility/plumber.png";
   final repair = "resources/facility/repair.png";
   final salon = "resources/facility/salon.png";
+
+
+  final card1 = "resources/images/card1.png";
+  final card2 = "resources/images/card2.png";
+  final card3 = "resources/images/card3.png";
+
+  final tick="resources/images/tick.png";
+
 }
 
 class _Svg {}

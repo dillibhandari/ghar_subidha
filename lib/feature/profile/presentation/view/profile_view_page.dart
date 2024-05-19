@@ -6,6 +6,7 @@ import 'package:ghar_subidha/core/navigation/navigation.dart';
 import 'package:ghar_subidha/core/theme/theme_config.dart';
 import 'package:ghar_subidha/core/utils/dimens.dart';
 import 'package:ghar_subidha/core/utils/utils.dart';
+import 'package:ghar_subidha/feature/booking/presentation/widget/my_booking_list.dart';
 
 class ProfilePageView extends StatelessWidget {
   const ProfilePageView({super.key});
@@ -69,10 +70,9 @@ class ProfileBodyView extends StatelessWidget {
           SizedBox(height: sizeX24 * Utils.getScalingFactor(context)),
           CustomButton(
             height: sizeX40 * Utils.getScalingFactor(context),
-            width: sizeX180 * Utils.getScalingFactor(context),
-            onPressed: () {
-              // Navigation.replace(context, const DashboardPageView());
-            },
+            width: sizeX200 * Utils.getScalingFactor(context),
+            onPressed: () =>
+                Navigation.push(context, const MyBookingListWidget()),
             text: "My Booking",
             buttonStyle: CustomButtonStyles.fillBlueGray.copyWith(
               backgroundColor:

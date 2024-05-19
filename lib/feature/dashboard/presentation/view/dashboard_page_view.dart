@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ghar_subidha/core/common_widgets/custom_button.dart';
 import 'package:ghar_subidha/core/common_widgets/custom_image_view.dart';
 import 'package:ghar_subidha/core/constants/image_constants.dart';
-import 'package:ghar_subidha/core/navigation/navigation.dart';
+ import 'package:ghar_subidha/core/navigation/navigation.dart';
 import 'package:ghar_subidha/core/theme/theme_config.dart';
 import 'package:ghar_subidha/core/utils/dimens.dart';
 import 'package:ghar_subidha/core/utils/utils.dart';
+ import 'package:ghar_subidha/feature/booking/presentation/widget/my_booking_list.dart';
 import 'package:ghar_subidha/feature/dashboard/presentation/widgets/facility_details_widget.dart';
 import 'package:ghar_subidha/feature/profile/presentation/view/profile_view_page.dart';
 
@@ -42,12 +43,12 @@ class _DashboardPageViewState extends State<DashboardPageView> {
               padding:
                   EdgeInsets.all(paddingX10 * Utils.getScalingFactor(context)),
               child: SizedBox(
-                width: sizeX100 * Utils.getScalingFactor(context),
+                width: sizeX110 * Utils.getScalingFactor(context),
                 height: sizeX30 * Utils.getScalingFactor(context),
                 child: CustomButton(
                   height: sizeX30 * Utils.getScalingFactor(context),
                   onPressed: () =>
-                      Navigation.replace(context, const DashboardPageView()),
+                      Navigation.push(context, const MyBookingListWidget()),
                   text: "My Booking",
                   buttonStyle: CustomButtonStyles.fillBlueGray.copyWith(
                     backgroundColor: const MaterialStatePropertyAll(
@@ -76,22 +77,22 @@ class DashboardBodyView extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(paddingX16 * Utils.getScalingFactor(context)),
       child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Container(
+        physics: const BouncingScrollPhysics(),
+        child: SizedBox(
           height: Utils().height,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // SizedBox(height: 30),
-              AddressAndProfile(),
+              const AddressAndProfile(),
               SizedBox(height: sizeX20 * Utils.getScalingFactor(context)),
 
-              BigAdsWidget(),
+              const BigAdsWidget(),
               SizedBox(height: sizeX16 * Utils.getScalingFactor(context)),
-              OurMenuWidget(),
+              const OurMenuWidget(),
               SizedBox(height: sizeX16 * Utils.getScalingFactor(context)),
 
-              FacilityMenuList()
+              const FacilityMenuList()
             ],
           ),
         ),
