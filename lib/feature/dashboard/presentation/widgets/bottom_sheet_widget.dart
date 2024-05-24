@@ -28,7 +28,7 @@ class BottomSheetWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Gorkha Services",
+                      facilities.companyName,
                       style:
                           GharSubidhaTheme.getTextTheme(context).headingSmall,
                     ),

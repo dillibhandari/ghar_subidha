@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ghar_subidha/core/common_widgets/custom_button.dart';
 import 'package:ghar_subidha/core/common_widgets/custom_image_view.dart';
 import 'package:ghar_subidha/core/constants/image_constants.dart';
- import 'package:ghar_subidha/core/navigation/navigation.dart';
+import 'package:ghar_subidha/core/navigation/navigation.dart';
 import 'package:ghar_subidha/core/theme/theme_config.dart';
 import 'package:ghar_subidha/core/utils/dimens.dart';
 import 'package:ghar_subidha/core/utils/utils.dart';
- import 'package:ghar_subidha/feature/booking/presentation/widget/my_booking_list.dart';
+import 'package:ghar_subidha/feature/booking/presentation/widget/my_booking_list.dart';
 import 'package:ghar_subidha/feature/dashboard/presentation/widgets/facility_details_widget.dart';
 import 'package:ghar_subidha/feature/profile/presentation/view/profile_view_page.dart';
 
@@ -259,17 +259,27 @@ class FacilityModel {
   final int id;
   final String image;
   final String name;
-  FacilityModel(this.id, this.image, this.name);
+  final String companyName;
+  FacilityModel(this.id, this.image, this.name, this.companyName);
 }
 
 List<FacilityModel> listOfFacilityModel = [
-  FacilityModel(1, ImageConstants().png.electricity, "Electricity"),
-  FacilityModel(2, ImageConstants().png.cleaning, "Cleaning"),
-  FacilityModel(3, ImageConstants().png.plumber, "Plumber"),
-  FacilityModel(4, ImageConstants().png.salon, "Salon at Home"),
-  FacilityModel(5, ImageConstants().png.painting, "Painting"),
-  FacilityModel(6, ImageConstants().png.pestControl, "Pest Control"),
-  FacilityModel(7, ImageConstants().png.makeup, "Make up & Hairstyling"),
-  FacilityModel(8, ImageConstants().png.massage, "Massage at Home"),
-  FacilityModel(9, ImageConstants().png.repair, "Appliances Repair"),
+  FacilityModel(1, ImageConstants().png.electricity, "Electricity",
+      "Gorkha Electricity Service"),
+  FacilityModel(2, ImageConstants().png.cleaning, "Cleaning",
+      "Sports Free Cleaning Service "),
+  FacilityModel(
+      3, ImageConstants().png.plumber, "Plumber", "Gorkha Plumbing Service"),
+  FacilityModel(
+      4, ImageConstants().png.salon, "Salon at Home", "Gorkha Salon Pvt ltd"),
+  FacilityModel(
+      5, ImageConstants().png.painting, "Painting", "Gorkha Art Pvt ltd"),
+  FacilityModel(6, ImageConstants().png.pestControl, "Pest Control",
+      "Gorkha Pest Control services"),
+  FacilityModel(7, ImageConstants().png.makeup, "Make up & Hairstyling",
+      "Gorkha Parlors "),
+  FacilityModel(8, ImageConstants().png.massage, "Massage at Home",
+      "Gorkha Massage services"),
+  FacilityModel(9, ImageConstants().png.repair, "Appliances Repair",
+      "Gorkha repair service"),
 ];

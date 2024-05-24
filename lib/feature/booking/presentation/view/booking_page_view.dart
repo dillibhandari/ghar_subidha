@@ -96,7 +96,7 @@ class _BookingBodyViewState extends State<BookingBodyView> {
               addressWidget(context),
               SizedBox(height: sizeX30 * Utils.getScalingFactor(context)),
               Text(
-                "Gorkha electricity repair",
+                widget.facilities.companyName,
                 style: GharSubidhaTheme.getTextTheme(context)
                     .bodyTextLarge
                     ?.copyWith(fontWeight: FontWeight.w700),
@@ -229,7 +229,7 @@ class _BookingBodyViewState extends State<BookingBodyView> {
     return Row(
       children: [
         CustomImageView(
-          imagePath: ImageConstants().png.electricity,
+          imagePath: widget.facilities.image,
           height: sizeX40 * Utils.getScalingFactor(context),
           width: sizeX40 * Utils.getScalingFactor(context),
         ),
@@ -238,7 +238,7 @@ class _BookingBodyViewState extends State<BookingBodyView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "ELECTRICITY",
+              widget.facilities.name.toUpperCase(),
               style: GharSubidhaTheme.getTextTheme(context)
                   .bodyTextLarge
                   ?.copyWith(fontWeight: FontWeight.w600),
